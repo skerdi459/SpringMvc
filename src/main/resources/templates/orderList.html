@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Order Manager</title>
+</head>
+<body>
+<div align="center">
+    <h1>Order List</h1>
+    <a href="/new">Create New Order</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Name</th>
+            <th>User</th>
+            <th>Actions</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${listorders}">
+            <td th:text="${order.id}">Product ID</td>
+            <td th:text="${order.title}">Name</td>
+            <td th:text="${order.users.getFirst_name()}">Brand</td>
+
+            <td>
+                <a th:href="@{'/create/createOrderItem/' + ${order.id}}">Add Item</a>
+                &nbsp;&nbsp;&nbsp;
+                <a th:href="@{'/edit/' + ${order.id}}">Edit</a>
+                &nbsp;&nbsp;&nbsp;
+                <a th:href="@{'/delete/' + ${order.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
